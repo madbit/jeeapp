@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>	
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.madbit.jeeapp</groupId>
 	<artifactId>jeeapp-ear</artifactId>
 	<version>1.0.0</version>
@@ -11,7 +11,7 @@
 		<groupId>org.madbit.jeeapp</groupId>
 		<version>1.0.0</version>
 	</parent>
-	
+
 	<dependencies>
 		<!-- web and ejb modules -->
 		<dependency>
@@ -27,13 +27,6 @@
 			<version>1.0.0</version>
 			<type>war</type>
 		</dependency>
-		
-		<!-- <dependency>
-			<groupId>org.madbit.jeeapp</groupId>
-			<artifactId>jeeapp-persistence</artifactId>
-			<version>1.0.0</version>
-			<type>jar</type>
-		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -66,6 +59,13 @@
 							<artifactId>jeeapp-business</artifactId>
 						</ejbModule>
 					</modules>
+
+					<generateApplicationXml>true</generateApplicationXml>
+					<!-- The following setting builds the EAR file in a format suitable 
+						for Glassfish deployment. With this we don't have to copy the libs into Glassfish's 
+						appserver lib directory -->
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+
 					<!-- <jboss> <version>4</version> <unauthenticated-principal>guest</unauthenticated-principal> 
 						<loader-repository>org.madbit.ejb:loader=ejb3.ear</loader-repository> </jboss> -->
 				</configuration>
