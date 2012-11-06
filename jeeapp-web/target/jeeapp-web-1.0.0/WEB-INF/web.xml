@@ -20,7 +20,7 @@
 	
 	<servlet>
 		<servlet-name>addBook</servlet-name>
-		<servlet-class>org.madbit.jeeapp.servlet.HelloServlet</servlet-class>
+		<servlet-class>org.madbit.jeeapp.servlet.AddBookServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>addBook</servlet-name>

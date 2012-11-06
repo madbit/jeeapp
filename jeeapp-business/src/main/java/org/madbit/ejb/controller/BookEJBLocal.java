@@ -8,4 +8,5 @@ import org.madbit.jeeapp.domain.Book;
 public interface BookEJBLocal {
 	public String getBook();
 	public Book findBookById(long id);
+	public Book addBook(Book book);
 }

@@ -19,4 +19,9 @@ public class BookEJB implements BookEJBLocal {
 	public Book findBookById(long id) { 
 		return em.find(Book.class, id); 
 	}
+
+	public Book addBook(Book book) {
+		em.persist(book);
+		return book;
+	}
 }
