@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>	
+	<groupId>org.madbit.jeeapp</groupId>
+	<artifactId>jeeapp-ear</artifactId>
+	<version>1.0.0</version>
+	<packaging>ear</packaging>
+
+	<parent>
+		<artifactId>jeeapp-parent</artifactId>
+		<groupId>org.madbit.jeeapp</groupId>
+		<version>1.0.0</version>
+	</parent>
+	
+	<dependencies>
+		<!-- web and ejb modules -->
+		<dependency>
+			<groupId>org.madbit.jeeapp</groupId>
+			<artifactId>jeeapp-business</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.madbit.jeeapp</groupId>
+			<artifactId>jeeapp-web</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
+		</dependency>
+		
+		<!-- <dependency>
+			<groupId>org.madbit.jeeapp</groupId>
+			<artifactId>jeeapp-persistence</artifactId>
+			<version>1.0.0</version>
+			<type>jar</type>
+		</dependency> -->
+	</dependencies>
+
+	<build>
+		<finalName>jeeapp</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<applicationName>jeeapp</applicationName>
+					<displayName>jeeapp</displayName>
+					<modules>
+						<webModule>
+							<artifactId>jeeapp-web</artifactId>
+							<groupId>org.madbit.jeeapp</groupId>
+							<contextRoot>/jeeapp</contextRoot>
+						</webModule>
+						<ejbModule>
+							<groupId>org.madbit.jeeapp</groupId>
+							<artifactId>jeeapp-business</artifactId>
+						</ejbModule>
+					</modules>
+					<!-- <jboss> <version>4</version> <unauthenticated-principal>guest</unauthenticated-principal> 
+						<loader-repository>org.madbit.ejb:loader=ejb3.ear</loader-repository> </jboss> -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
