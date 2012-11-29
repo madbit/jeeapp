@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>J2EE app</title>
 </head>
 <body>
-Hello world!!
+	<ul>
+		<li><a href="shoppingCart.jsp" >shoppingCart.jsp</a></li>
+		<li><a href="addFilm.jsp" >addFilm.jsp</a></li>
+	</ul>	
 </body>
 </html>

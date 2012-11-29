@@ -43,6 +43,7 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>2.8</version>
 				<configuration>
@@ -65,9 +66,6 @@
 						for Glassfish deployment. With this we don't have to copy the libs into Glassfish's 
 						appserver lib directory -->
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
-
-					<!-- <jboss> <version>4</version> <unauthenticated-principal>guest</unauthenticated-principal> 
-						<loader-repository>org.madbit.ejb:loader=ejb3.ear</loader-repository> </jboss> -->
 				</configuration>
 			</plugin>
 		</plugins>

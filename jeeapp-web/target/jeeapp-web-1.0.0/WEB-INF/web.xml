@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-	<display-name>EJB3</display-name>
+	<display-name>VLib</display-name>
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
@@ -19,11 +19,21 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>addBook</servlet-name>
-		<servlet-class>org.madbit.jeeapp.servlet.AddBookServlet</servlet-class>
+		<servlet-name>addFilm</servlet-name>
+		<servlet-class>org.madbit.jeeapp.servlet.AddFilmServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>addBook</servlet-name>
-		<url-pattern>/addBook</url-pattern>
+		<servlet-name>addFilm</servlet-name>
+		<url-pattern>/addFilm</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shoppingCart</servlet-name>
+		<servlet-class>org.madbit.jeeapp.servlet.shopping.ShoppingCartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shoppingCart</servlet-name>
+		<url-pattern>/shoppingCart</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

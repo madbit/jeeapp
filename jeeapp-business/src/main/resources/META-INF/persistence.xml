@@ -6,8 +6,11 @@
 	version="1.0">
 	<persistence-unit name="bookPU" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>jdbc/JEEAPP</jta-data-source> 
-		<class>org.madbit.jeeapp.domain.Book</class>
+		<jta-data-source>jdbc/JEEAPP</jta-data-source>
+		<class>org.madbit.jeeapp.domain.Actor</class>
+		<class>org.madbit.jeeapp.domain.Director</class>
+		<class>org.madbit.jeeapp.domain.Film</class>
+		
 		<properties>
 			<!-- <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jeeapp" />
