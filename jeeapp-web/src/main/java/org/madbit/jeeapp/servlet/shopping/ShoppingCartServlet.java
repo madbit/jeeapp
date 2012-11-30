@@ -10,15 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.madbit.jeeapp.components.shopping.ShoppingCartLocal;
-import org.madbit.jeeapp.components.shopping.SimpleCartLocal;
+import org.madbit.jeeapp.shopping.ejb.ShoppingCartLocal;
 
 public class ShoppingCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 2789580260930727133L;
 	
 	@EJB private ShoppingCartLocal shoppingCartLocal;
-	
-	@EJB private SimpleCartLocal simpleCartLocal;
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,10 +31,8 @@ public class ShoppingCartServlet extends HttpServlet {
 	private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int count = shoppingCartLocal.increaseCount();
-		int simpleCount = simpleCartLocal.increaseCount();
 		
 		session.setAttribute("count", count);
-		session.setAttribute("simpleCount", simpleCount);
 		
 		String nextJSP = "/shoppingCart.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
@@ -45,10 +40,10 @@ public class ShoppingCartServlet extends HttpServlet {
 	}
 	
 	private void checkout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		int count = shoppingCartLocal.checkout();
+		
+		HttpSession session = request.getSession();		
 		session.setAttribute("count", count);
-		session.removeAttribute("simpleCount");
 		
 		String nextJSP = "/shoppingCart.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
