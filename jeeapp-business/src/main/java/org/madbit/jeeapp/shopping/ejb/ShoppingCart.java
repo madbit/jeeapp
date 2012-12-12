@@ -4,8 +4,6 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
 
-import org.apache.log4j.Logger;
-
 @Stateful(name="ShoppingCart")
 @Local(ShoppingCartLocal.class)
 public class ShoppingCart implements ShoppingCartLocal {

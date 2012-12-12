@@ -22,7 +22,14 @@ public class CheckoutBean{
 	private Queue queue; 
 
 	public void checkout(int count){		
-		try {			
+		try {
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			// Creates the needed artifacts to connect to the queue 
 			Connection connection = connectionFactory.createConnection();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE); 

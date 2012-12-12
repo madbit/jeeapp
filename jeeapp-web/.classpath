@@ -3,8 +3,11 @@
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="var" path="M2_REPO/org/glassfish/javax.annotation/3.0.1/javax.annotation-3.0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/javax.annotation/3.1/javax.annotation-3.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/javax.ejb/3.1/javax.ejb-3.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/javax.transaction/3.1/javax.transaction-3.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/jstl/jstl/1.2/jstl-1.2.jar"/>
   <classpathentry kind="src" path="/jeeapp-business"/>
   <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.20/mysql-connector-java-5.1.20.jar"/>
