@@ -7,16 +7,7 @@
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	
-	<servlet>
-		<servlet-name>helloServlet</servlet-name>
-		<servlet-class>org.madbit.jeeapp.servlet.HelloServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>helloServlet</servlet-name>
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
+	</welcome-file-list>	
 	
 	<servlet>
 		<servlet-name>addFilm</servlet-name>

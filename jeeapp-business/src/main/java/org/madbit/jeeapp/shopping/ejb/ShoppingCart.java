@@ -1,19 +1,35 @@
 package org.madbit.jeeapp.shopping.ejb;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 
-@Stateful(name="ShoppingCart")
-@Local(ShoppingCartLocal.class)
-public class ShoppingCart implements ShoppingCartLocal {
+import org.jboss.logging.Logger;
 
-//	private Logger logger = Logger.getLogger(this.getClass());
+@Stateful
+@LocalBean
+public class ShoppingCart {
+
+	private Logger logger = Logger.getLogger(this.getClass());
 	
 	@EJB
 	private CheckoutBean checkoutBean;
 	
 	private int count;
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("Stateful EJB created");
+		logger.debug("Stateful EJB created");
+	}
+	
+	@PreDestroy
+	public void destroy() {
+		System.out.println("EJB destroyed");
+		logger.debug("EJB destroyed");
+	}
 
 	public int getCount() {
 		return count;
@@ -24,14 +40,15 @@ public class ShoppingCart implements ShoppingCartLocal {
 	}
 	
 	public int increaseCount() {
-		System.out.println("Count initial: " + count);
 		count++;
-		System.out.println("Count final: " + count);
+		System.out.println("Stateful count: " + count);
+		logger.debug("Stateful count: " + count);
 		return count;
 	}
 
 	public int checkout() {
-		System.out.println("Final count: " + count);
+		System.out.println("Stateful final count: " + count);
+		logger.debug("Stateful final count: " + count);
 		checkoutBean.checkout(count);		
 		count = 0;
 		return count;

@@ -6,7 +6,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-@MessageDriven(mappedName="jms/jeeapp/CheckoutQueue")
+//@MessageDriven(mappedName="jms/jeeapp/CheckoutQueue")
 public class OrderMDB implements MessageListener {
 
 	public void onMessage(Message message) {

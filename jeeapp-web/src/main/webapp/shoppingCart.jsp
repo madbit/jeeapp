@@ -10,8 +10,8 @@
 <body>
 
 	<c:choose>
-		<c:when test="${empty count}">Count: 0 - SimpleCount: 0</c:when>
-		<c:otherwise>Count: <c:out value="${count}" /> - SimpleCount: <c:out value="${simpleCount}" /></c:otherwise>
+		<c:when test="${empty count}">Stateful count: 0 - Stateless count: 0</c:when>
+		<c:otherwise>Stateful count: <c:out value="${count}" /> - Stateless count: <c:out value="${simpleCount}" /></c:otherwise>
 	</c:choose>
 	<br />
 	<a href="index.jsp">Index</a> | <a href="shoppingCart?op=add">Add to shopping cart</a> | <a href="shoppingCart?op=checkout">Check out</a>
