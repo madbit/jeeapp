@@ -4,11 +4,12 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 import org.jboss.logging.Logger;
 
-@Stateful
+@Stateful(name="ShoppingCart", mappedName="ShoppingCart")
 @LocalBean
 public class ShoppingCart {
 
@@ -46,6 +47,7 @@ public class ShoppingCart {
 		return count;
 	}
 
+	@Remove
 	public int checkout() {
 		System.out.println("Stateful final count: " + count);
 		logger.debug("Stateful final count: " + count);

@@ -4,7 +4,7 @@ import org.madbit.jeeapp.persistence.dao.components.IActorDAO;
 import org.madbit.jeeapp.persistence.dao.components.IDirectorDAO;
 import org.madbit.jeeapp.persistence.dao.components.IFilmDAO;
 
-public interface IDaoFactory {
+public interface IDAOFactory {
 
 	public IActorDAO createActorDAO();
 	public IFilmDAO createFilmDAO();

@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="director")
+@Table(name="DIRECTOR")
 public class Director implements Serializable {
 	private static final long serialVersionUID = 1L;
 

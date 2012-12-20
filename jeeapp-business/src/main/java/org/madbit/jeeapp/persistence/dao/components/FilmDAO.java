@@ -5,11 +5,27 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.madbit.jeeapp.persistence.domain.Film;
+
 @Stateless
 @LocalBean
-public class FilmDAO {
+public class FilmDAO implements IFilmDAO {
 	
 	@PersistenceContext(unitName = "VLibPU") 
 	private EntityManager em;
+
+	public void addFilm(Film film) {
+		em.persist(film);
+	}
+
+	public void updateFilm(Film film) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteFilm(Film film) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

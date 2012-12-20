@@ -11,8 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.madbit.jeeapp.persistence.domain.Actor;
+import org.madbit.jeeapp.persistence.domain.Director;
+import org.madbit.jeeapp.persistence.domain.Film;
+import org.madbit.vlib.film.FilmFacade;
+
 public class AddFilmServlet extends HttpServlet {
 	private static final long serialVersionUID = 4223489592960466469L;
+	
+	@EJB
+	private FilmFacade filmFacade;
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -31,28 +39,28 @@ public class AddFilmServlet extends HttpServlet {
 			String actorMidname = req.getParameter("actorMidname");
 			String actorLastname = req.getParameter("actorLastname");
 			
-//			Actor actor = new Actor();
-//			actor.setFirstname(actorFirstname);
-//			actor.setMidname(actorMidname);
-//			actor.setLastname(actorLastname);
-//			
-//			libraryEJB.addActor(actor);
-//			
-//			Director director = new Director();
-//			director.setFirstname(directorFirstname);
-//			director.setMidname(directorMidname);
-//			director.setLastname(directorLastname);
-//			
-//			libraryEJB.addDirector(director);
-//			
-//			Film film = new Film();
-//			film.setTitle(title);
-//			film.setReleaseDate(releaseDate);
-//			film.setRunningTime(runningTime);
-//			film.getDirectors().add(director);
-//			film.getActors().add(actor);
-//			libraryEJB.addFilm(film);
+			Actor actor = new Actor();
+			actor.setFirstname(actorFirstname);
+			actor.setMidname(actorMidname);
+			actor.setLastname(actorLastname);
 			
+			filmFacade.addActor(actor);
+			
+			Director director = new Director();
+			director.setFirstname(directorFirstname);
+			director.setMidname(directorMidname);
+			director.setLastname(directorLastname);
+			
+			filmFacade.addDirector(director);
+			
+			Film film = new Film();
+			film.setTitle(title);
+			film.setReleaseDate(releaseDate);
+			film.setRunningTime(runningTime);
+			film.getDirectors().add(director);
+			film.getActors().add(actor);
+			
+			filmFacade.addFilm(film);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

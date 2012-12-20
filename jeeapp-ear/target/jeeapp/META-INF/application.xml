@@ -6,11 +6,11 @@
   <display-name>jeeapp</display-name>
   <module>
     <web>
-      <web-uri>jeeapp-web-1.0.0.war</web-uri>
+      <web-uri>jeeapp-web.jar</web-uri>
       <context-root>/jeeapp</context-root>
     </web>
   </module>
   <module>
-    <ejb>jeeapp-business-1.0.0.jar</ejb>
+    <ejb>jeeapp-business.jar</ejb>
   </module>
 </application>

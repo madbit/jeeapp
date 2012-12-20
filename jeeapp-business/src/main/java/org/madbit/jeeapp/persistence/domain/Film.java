@@ -11,41 +11,57 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="film")
 public class Film implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="FILM_ID")
-	private String filmId;
+	private int filmId;
 
-    @Temporal( TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="RELEASE_DATE")
 	private Date releaseDate;
 
 	@Column(name="RUNNING_TIME")
-	private short runningTime;
+	private int runningTime;
 
-	@Column(name="TITLE")
 	private String title;
 
 	//bi-directional many-to-many association to Director
-	@ManyToMany(mappedBy="films")
+	@ManyToMany
+	@JoinTable(
+		name="directed"
+		, joinColumns={
+			@JoinColumn(name="FILM_ID")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="DIRECTOR_ID")
+			}
+		)
 	private List<Director> directors;
 
 	//bi-directional many-to-many association to Actor
-	@ManyToMany(mappedBy="films")
+	@ManyToMany
+	@JoinTable(
+		name="starring"
+		, joinColumns={
+			@JoinColumn(name="FILM_ID")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ACTOR_ID")
+			}
+		)
 	private List<Actor> actors;
 
-    public Film() {
-    }
+	public Film() {
+	}
 
-	public String getFilmId() {
+	public int getFilmId() {
 		return this.filmId;
 	}
 
-	public void setFilmId(String filmId) {
+	public void setFilmId(int filmId) {
 		this.filmId = filmId;
 	}
 
@@ -57,11 +73,11 @@ public class Film implements Serializable {
 		this.releaseDate = releaseDate;
 	}
 
-	public short getRunningTime() {
+	public int getRunningTime() {
 		return this.runningTime;
 	}
 
-	public void setRunningTime(short runningTime) {
+	public void setRunningTime(int runningTime) {
 		this.runningTime = runningTime;
 	}
 
@@ -80,7 +96,7 @@ public class Film implements Serializable {
 	public void setDirectors(List<Director> directors) {
 		this.directors = directors;
 	}
-	
+
 	public List<Actor> getActors() {
 		return this.actors;
 	}
@@ -88,5 +104,5 @@ public class Film implements Serializable {
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
-	
+
 }

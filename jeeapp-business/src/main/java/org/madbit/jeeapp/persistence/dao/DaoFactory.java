@@ -1,26 +1,26 @@
 package org.madbit.jeeapp.persistence.dao;
 
+import javax.ejb.Singleton;
+
+import org.madbit.jeeapp.persistence.dao.components.ActorDAO;
+import org.madbit.jeeapp.persistence.dao.components.DirectorDAO;
+import org.madbit.jeeapp.persistence.dao.components.FilmDAO;
 import org.madbit.jeeapp.persistence.dao.components.IActorDAO;
 import org.madbit.jeeapp.persistence.dao.components.IDirectorDAO;
 import org.madbit.jeeapp.persistence.dao.components.IFilmDAO;
 
-public class DaoFactory implements IDaoFactory {
+@Singleton
+public class DAOFactory implements IDAOFactory {
 
 	public IActorDAO createActorDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ActorDAO();
 	}
 
 	public IFilmDAO createFilmDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FilmDAO();
 	}
 
 	public IDirectorDAO createDirectorDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DirectorDAO();
 	}
-
-	
-	
 }

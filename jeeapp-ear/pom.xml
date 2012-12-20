@@ -50,14 +50,16 @@
 					<applicationName>jeeapp</applicationName>
 					<displayName>jeeapp</displayName>
 					<modules>
-						<webModule>
-							<artifactId>jeeapp-web</artifactId>
+						<webModule>						
 							<groupId>org.madbit.jeeapp</groupId>
+							<artifactId>jeeapp-web</artifactId>
 							<contextRoot>/jeeapp</contextRoot>
+							<bundleFileName>jeeapp-web.jar</bundleFileName>
 						</webModule>
 						<ejbModule>
 							<groupId>org.madbit.jeeapp</groupId>
 							<artifactId>jeeapp-business</artifactId>
+							<bundleFileName>jeeapp-business.jar</bundleFileName>
 						</ejbModule>
 					</modules>
 
