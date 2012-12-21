@@ -43,30 +43,42 @@ public class AddFilmServlet extends HttpServlet {
 			String actorMidname = req.getParameter("actorMidname");
 			String actorLastname = req.getParameter("actorLastname");
 			
-			Actor actor = new Actor();
-			actor.setFirstname(actorFirstname);
-			actor.setMidname(actorMidname);
-			actor.setLastname(actorLastname);
 			
-			Director director = new Director();
-			director.setFirstname(directorFirstname);
-			director.setMidname(directorMidname);
-			director.setLastname(directorLastname);
 			
 			Film film = new Film();
 			film.setTitle(title);
 			film.setReleaseDate(releaseDate);
 			film.setRunningTime(runningTime);
 			
-			List<Director> directors = film.getDirectors();
-			if(directors == null)
-				directors = new ArrayList<Director>();
-			directors.add(director);
+			Actor actor = new Actor();
+			actor.setFirstname(actorFirstname);
+			actor.setMidname(actorMidname);
+			actor.setLastname(actorLastname);
 			
-			List<Actor> actors = film.getActors();
-			if(actors == null)
-				actors = new ArrayList<Actor>();
-			actors.add(actor);
+			List<Film> actFilms = actor.getFilms();
+			if(actFilms == null)
+				actFilms = new ArrayList<Film>();
+			actFilms.add(film);
+			
+			Director director = new Director();
+			director.setFirstname(directorFirstname);
+			director.setMidname(directorMidname);
+			director.setLastname(directorLastname);
+			
+			List<Film> dirFilms = director.getFilms();
+			if(dirFilms == null)
+				dirFilms = new ArrayList<Film>();
+			dirFilms.add(film);
+			
+//			List<Director> directors = film.getDirectors();
+//			if(directors == null)
+//				directors = new ArrayList<Director>();
+//			directors.add(director);
+//			
+//			List<Actor> actors = film.getActors();
+//			if(actors == null)
+//				actors = new ArrayList<Actor>();
+//			actors.add(actor);
 			
 			filmFacade.addDirector(director);
 			filmFacade.addActor(actor);
