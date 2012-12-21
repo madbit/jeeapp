@@ -19,13 +19,10 @@ public class ActorDAO implements IActorDAO {
 	}
 
 	public void updateActor(Actor actor) {
-		// TODO Auto-generated method stub
-		
+		em.merge(actor);
 	}
 
 	public void deleteActor(Actor actor) {
-		// TODO Auto-generated method stub
-		
+		em.remove(actor);
 	}
-
 }

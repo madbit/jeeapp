@@ -2,6 +2,7 @@ package org.madbit.jeeapp.persistence.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -10,46 +11,45 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="DIRECTOR")
 public class Director implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="DIRECTOR_ID")
-	private String directorId;
+	private int directorId;
 
-	@Column(name="FIRSTNAME")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="BIRTH_DAY")
+	private Date birthDay;
+
 	private String firstname;
 
-	@Column(name="LASTNAME")
 	private String lastname;
 
-	@Column(name="MIDNAME")
 	private String midname;
 
 	//bi-directional many-to-many association to Film
-    @ManyToMany
-	@JoinTable(
-		name="directed"
-		, joinColumns={
-			@JoinColumn(name="DIRECTOR_ID")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="FILM_ID")
-			}
-		)
+	@ManyToMany(mappedBy="directors")
 	private List<Film> films;
 
-    public Director() {
-    }
+	public Director() {
+	}
 
-	public String getDirectorId() {
+	public int getDirectorId() {
 		return this.directorId;
 	}
 
-	public void setDirectorId(String directorId) {
+	public void setDirectorId(int directorId) {
 		this.directorId = directorId;
+	}
+
+	public Date getBirthDay() {
+		return this.birthDay;
+	}
+
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
 	}
 
 	public String getFirstname() {
@@ -83,5 +83,5 @@ public class Director implements Serializable {
 	public void setFilms(List<Film> films) {
 		this.films = films;
 	}
-	
+
 }

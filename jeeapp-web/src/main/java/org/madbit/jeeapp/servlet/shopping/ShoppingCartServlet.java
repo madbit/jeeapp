@@ -18,8 +18,8 @@ public class ShoppingCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 2789580260930727133L;
 	
 	@EJB
-	ShoppingServiceLocator shoppingServiceLocator;
-	
+	private ShoppingServiceLocator shoppingServiceLocator;
+		
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op=request.getParameter("op");
@@ -35,7 +35,7 @@ public class ShoppingCartServlet extends HttpServlet {
 		try {			
 			HttpSession session = request.getSession();
 			ShoppingCart  shoppingCart = null;
-			
+						
 			if(session.getAttribute("shoppingCartBean") != null)
 				shoppingCart = (ShoppingCart) session.getAttribute("shoppingCartBean");
 			else

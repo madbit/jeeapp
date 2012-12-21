@@ -3,7 +3,9 @@ package org.madbit.jeeapp.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.madbit.jeeapp.persistence.dao.components.ActorDAO;
 import org.madbit.jeeapp.persistence.domain.Actor;
 import org.madbit.jeeapp.persistence.domain.Director;
 import org.madbit.jeeapp.persistence.domain.Film;
@@ -21,6 +24,7 @@ public class AddFilmServlet extends HttpServlet {
 	
 	@EJB
 	private FilmFacade filmFacade;
+	@EJB ActorDAO actorDAO;
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -44,23 +48,30 @@ public class AddFilmServlet extends HttpServlet {
 			actor.setMidname(actorMidname);
 			actor.setLastname(actorLastname);
 			
-			filmFacade.addActor(actor);
-			
 			Director director = new Director();
 			director.setFirstname(directorFirstname);
 			director.setMidname(directorMidname);
 			director.setLastname(directorLastname);
 			
-			filmFacade.addDirector(director);
-			
 			Film film = new Film();
 			film.setTitle(title);
 			film.setReleaseDate(releaseDate);
 			film.setRunningTime(runningTime);
-			film.getDirectors().add(director);
-			film.getActors().add(actor);
 			
+			List<Director> directors = film.getDirectors();
+			if(directors == null)
+				directors = new ArrayList<Director>();
+			directors.add(director);
+			
+			List<Actor> actors = film.getActors();
+			if(actors == null)
+				actors = new ArrayList<Actor>();
+			actors.add(actor);
+			
+			filmFacade.addDirector(director);
+			filmFacade.addActor(actor);
 			filmFacade.addFilm(film);
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
