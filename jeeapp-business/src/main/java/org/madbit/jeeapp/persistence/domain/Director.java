@@ -2,6 +2,7 @@ package org.madbit.jeeapp.persistence.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Director implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="DIRECTOR_ID")
 	private int directorId;
 
@@ -30,7 +31,7 @@ public class Director implements Serializable {
 	private String midname;
 
 	//bi-directional many-to-many association to Film
-	@ManyToMany(mappedBy="directors")
+	@ManyToMany(mappedBy="directors", cascade=CascadeType.ALL)
 	private List<Film> films;
 
 	public Director() {

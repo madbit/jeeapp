@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.madbit.jeeapp.persistence.dao.IFilmDAO;
 import org.madbit.jeeapp.persistence.domain.Film;
 
 @Stateless
@@ -14,8 +15,9 @@ public class FilmDAO implements IFilmDAO {
 	@PersistenceContext(unitName = "VLibPU") 
 	private EntityManager em;
 
-	public void addFilm(Film film) {
+	public Film addFilm(Film film) {
 		em.persist(film);
+		return film;
 	}
 
 	public void updateFilm(Film film) {

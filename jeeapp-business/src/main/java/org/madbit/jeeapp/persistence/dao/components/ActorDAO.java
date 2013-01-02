@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.madbit.jeeapp.persistence.dao.IActorDAO;
 import org.madbit.jeeapp.persistence.domain.Actor;
 
 @Stateless
@@ -14,8 +15,9 @@ public class ActorDAO implements IActorDAO {
 	@PersistenceContext(unitName = "VLibPU") 
 	private EntityManager em;
 
-	public void addActor(Actor actor) {
+	public Actor addActor(Actor actor) {
 		em.persist(actor);
+		return actor;
 	}
 
 	public void updateActor(Actor actor) {

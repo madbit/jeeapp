@@ -5,33 +5,37 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.madbit.jeeapp.persistence.dao.components.ActorDAO;
+import org.apache.log4j.Logger;
 import org.madbit.jeeapp.persistence.domain.Actor;
 import org.madbit.jeeapp.persistence.domain.Director;
 import org.madbit.jeeapp.persistence.domain.Film;
 import org.madbit.vlib.film.FilmFacade;
 
+@WebServlet(name="addFilm", urlPatterns="/addFilm")
 public class AddFilmServlet extends HttpServlet {
 	private static final long serialVersionUID = 4223489592960466469L;
 	
 	@EJB
 	private FilmFacade filmFacade;
-	@EJB ActorDAO actorDAO;
+	
+	Logger logger =  Logger.getLogger(this.getClass());
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		logger.info("Add film request");
+		
 		try {
-			String title = req.getParameter("title");
-			
+			String title = req.getParameter("title");			
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date releaseDate = sdf.parse(req.getParameter("releaseDate"));
 			short runningTime = Short.parseShort(req.getParameter("runningTime"));
@@ -43,57 +47,39 @@ public class AddFilmServlet extends HttpServlet {
 			String actorMidname = req.getParameter("actorMidname");
 			String actorLastname = req.getParameter("actorLastname");
 			
-			
-			
-			Film film = new Film();
-			film.setTitle(title);
-			film.setReleaseDate(releaseDate);
-			film.setRunningTime(runningTime);
-			
 			Actor actor = new Actor();
 			actor.setFirstname(actorFirstname);
 			actor.setMidname(actorMidname);
 			actor.setLastname(actorLastname);
-			
-			List<Film> actFilms = actor.getFilms();
-			if(actFilms == null)
-				actFilms = new ArrayList<Film>();
-			actFilms.add(film);
 			
 			Director director = new Director();
 			director.setFirstname(directorFirstname);
 			director.setMidname(directorMidname);
 			director.setLastname(directorLastname);
 			
-			List<Film> dirFilms = director.getFilms();
-			if(dirFilms == null)
-				dirFilms = new ArrayList<Film>();
-			dirFilms.add(film);
+			Film film = new Film();
+			film.setTitle(title);
+			film.setReleaseDate(releaseDate);
+			film.setRunningTime(runningTime);
 			
-//			List<Director> directors = film.getDirectors();
-//			if(directors == null)
-//				directors = new ArrayList<Director>();
-//			directors.add(director);
-//			
-//			List<Actor> actors = film.getActors();
-//			if(actors == null)
-//				actors = new ArrayList<Actor>();
-//			actors.add(actor);
+			if(film.getDirectors() == null)
+				film.setDirectors(new ArrayList<Director>());
+			film.getDirectors().add(director);
 			
-			filmFacade.addDirector(director);
-			filmFacade.addActor(actor);
-			filmFacade.addFilm(film);
+			if(film.getActors() == null)
+				film.setActors(new ArrayList<Actor>());
+			film.getActors().add(actor);
 			
+			Film dbFilm = filmFacade.addFilm(film);
+			
+			req.setAttribute("userMessage", "Film added successfully");	
+			logger.info("Film added. ID: " + dbFilm.getFilmId());
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+			req.setAttribute("userMessage", "An error occurred adding the film");
+			logger.error("An error occurred adding the film. " + e.getMessage());
+		}
+		
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/success.jsp");
+		rd.forward(req, res);
 	}
 }
-
-
-
-
-
-
-

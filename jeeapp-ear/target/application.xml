@@ -6,7 +6,7 @@
   <display-name>jeeapp</display-name>
   <module>
     <web>
-      <web-uri>jeeapp-web.jar</web-uri>
+      <web-uri>jeeapp-web.war</web-uri>
       <context-root>/jeeapp</context-root>
     </web>
   </module>

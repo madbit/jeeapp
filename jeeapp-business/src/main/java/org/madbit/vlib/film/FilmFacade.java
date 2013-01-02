@@ -21,18 +21,21 @@ public class FilmFacade {
 	@EJB private FilmDAO filmDAO;	
 	@EJB private DirectorDAO directorDAO;
 	
-	public void addFilm(Film film) {
-//		IFilmDAO filmDAO = daoFactory.createFilmDAO();
-		filmDAO.addFilm(film);
+	public Film addFilm(Film film) {
+		return filmDAO.addFilm(film);
 	}
 	
-	public void addActor(Actor actor) {
+	public Actor addActor(Actor actor) {
 //		IActorDAO actorDAO = daoFactory.createActorDAO();
-		actorDAO.addActor(actor);
+		return actorDAO.addActor(actor);
 	}
 	
-	public void addDirector(Director director) {
+	public Director addDirector(Director director) {
 //		IDirectorDAO directorDAO = daoFactory.createDirectorDAO();
-		directorDAO.addDirector(director);
+		return directorDAO.addDirector(director);
+	}
+	
+	public void getFilmsByDirectorID(long id) {
+		directorDAO.getFilmsByDirectorID(id);
 	}
 }

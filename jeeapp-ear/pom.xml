@@ -54,7 +54,7 @@
 							<groupId>org.madbit.jeeapp</groupId>
 							<artifactId>jeeapp-web</artifactId>
 							<contextRoot>/jeeapp</contextRoot>
-							<bundleFileName>jeeapp-web.jar</bundleFileName>
+							<bundleFileName>jeeapp-web.war</bundleFileName>
 						</webModule>
 						<ejbModule>
 							<groupId>org.madbit.jeeapp</groupId>

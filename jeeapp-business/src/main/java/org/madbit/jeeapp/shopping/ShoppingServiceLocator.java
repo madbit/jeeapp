@@ -6,8 +6,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.madbit.jeeapp.persistence.dao.IActorDAO;
 import org.madbit.jeeapp.persistence.dao.IDAOFactory;
-import org.madbit.jeeapp.persistence.dao.components.IActorDAO;
 import org.madbit.jeeapp.shopping.ejb.ShoppingCart;
 
 @Singleton
